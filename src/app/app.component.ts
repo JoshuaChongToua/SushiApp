@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AddPanierService } from './service/add-panier.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sushi-app';
+  panier: any = []
 }

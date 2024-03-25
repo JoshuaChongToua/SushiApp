@@ -1,0 +1,26 @@
+<div class="min-vh d-flex container-fluid row  mb-3 p-2">
+    <div class="card-container-fluid p-2 col-11 mx-auto contour">
+        <div class="card-image">
+            <img src="http://localhost:8080/api/image/{{boxData.image}}" alt="image" />
+        </div>
+        <div class="card-body">
+            <div class="card-name">
+                <h3><b>{{boxData.nom}}</b></h3>
+            </div>
+            <div class="card-price">
+                <h3>{{boxData.prix}} € <button class="plus" (click)="add()">+</button></h3>
+            </div>
+            <div class="card-excerpt">
+                <p>{{boxData.pieces}} pièces</p>
+            </div>
+            <div class="card-saveur">
+                <p><b>Saveurs:</b> {{boxData.saveurs}} </p>
+            </div>
+            <div class="card-aliments">
+                <p><b>Aliments:</b> <br><i *ngFor="let aliment of boxData.aliments">- {{aliment.nom}} : x{{aliment.quantite}} <br></i></p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<button type="button" class="btn btn-secondary retour"routerLink="" routerLinkActive="active">Retour</button>

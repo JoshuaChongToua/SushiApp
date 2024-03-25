@@ -1,0 +1,89 @@
+.fond {
+    background-color: transparent;
+   
+}
+
+.supprimer {
+    display: block;
+    margin: auto;
+    
+}
+
+.card {
+    width: 325px; 
+    margin: 20px ; 
+    margin-left: 20px;
+    margin-right: 20px;
+    background:radial-gradient(rgb(51, 44, 49), rgb(36, 36, 37)); 
+    box-shadow: 0px 5px 20px #999; 
+  }
+  .card a { 
+    color: #333; 
+    text-decoration: none;
+  }
+  .card:hover .card-image img { 
+    width: 120%;
+    filter: grayscale(0);
+    
+  }
+
+  
+
+  .poubelle {
+    display: block;
+    margin: auto;
+  }
+
+  .card:hover {
+    box-shadow: 0px 0px 50px whitesmoke;
+  }
+
+  .card-image {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-image img {
+    width: 110%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition-property: filter width;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    
+
+  }
+
+  .card-body {
+    text-align:center;  
+  padding: 15px 20px; 
+  box-sizing: border-box; 
+}
+.card-container-fluid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 30px;
+  padding-bottom: 100px;
+  
+}
+
+  
+.card-price, .card-title, .card-excerpt {
+     font-family: 'Playfair Display', serif;
+  }
+  
+  .card-price,.card-title {
+    text-align:center;
+    text-transform:uppercase;
+    font-weight: bold;
+  }
+  
+  .card-excerpt {
+    color: #777;
+  }
+  .plus:hover {
+    background-color: #333;
+  }

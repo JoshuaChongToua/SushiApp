@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div *ngIf="historique" class="card-container-fluid">
+        <div *ngFor="let commande of historique">
+            <div class="col-6 card">
+                <div class="card-body">
+                    <div class="card-price">
+                        <h3 style="color: goldenrod;">{{commande.idCommande}}</h3>
+                    </div>
+                    <div class="card-title">
+                        <h3>
+                            <span class="fond" style="color: wheat; font-size: 15px;" *ngFor="let elt of commande.support">x{{elt.quantite}}: {{elt.box.nom}} 
+                                <button data-bs-toggle="modal" data-bs-target="#plat">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+                                <br>
+                                <div class="modal fade" id="plat" tabindex="-1" aria-labelledby="platLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <h1 class="modal-title fs-5" id="platLabel">{{elt.box.name}}</h1>
+                                                <img src="http://localhost:8080/api/image/{{elt.box.image}}" alt="image" />
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span> 
+                        </h3>
+                    </div>
+                    <div class="card-qte">
+                        <p style="color: wheat;">{{commande.total | number: '1.2-2'}} €</p>
+                    </div>
+                </div>
+                <i style="background-color: transparent; color: white;" class="bi bi-trash poubelle"
+                    (click)="deleteLigne(commande.idCommande)"></i>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-danger supprimer" style="width: 10%;" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">Supprimer historique</button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Etes-vous sur de supprimer l'historique?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)="deleteHistorique()">Oui</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

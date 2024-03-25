@@ -1,0 +1,111 @@
+<div *ngIf="boxes" class="card-container-fluid">
+    <div *ngFor="let box of boxes">
+        <div class="col-6 card">
+            <a class="nav-link active" routerLink="/details/{{box.id}}" routerLinkActive="active">
+                <div class="card-image"><img src="http://localhost:8080/api/image/{{box.image}}" alt="image" /></div>
+                <span class="dot" style="color: aliceblue;"></span>
+                <div class="card-body">
+
+                    <div class="card-price">
+                        <h3>{{box.prix}} €</h3>
+                    </div>
+                    <div class="card-title">
+                        <h3>{{box.nom}}</h3>
+                    </div>
+                    <div class="card-qte">
+                        <p>{{box.pieces}} pièces</p>
+                    </div>
+
+
+                </div>
+            </a>
+            <div class="card-excerpt quantite">
+                <p> <button class="moins" (click)="moins(box.id)">-</button> {{getQuantite(box.id)}} <button
+                        class="plus" (click)="add(box)">+</button> </p>
+            </div>
+            <i class="bi bi-trash poubelle" (click)="deleteBox(box.id)"></i>
+        </div>
+    </div>
+    <div class="volSticky">
+        <div id="volet_clos">
+            <div id="volet">
+                <a href="#volet" class="ouvrir" aria-hidden="true"><i class="bi bi-cart-check"></i></a>
+                <a href="#volet_clos" class="fermer" aria-hidden="true"><i class="bi bi-cart-check"></i></a>
+                <h1 class="panier" style="color: goldenrod;">Panier</h1>
+                <div class="container-fluid">
+                    <table class="table" style="color: wheat; text-align: center;">
+                        <tr>
+                            <th scope="col">Produits</th>
+                            <th scope="col">Quantite</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Total</th>
+                        </tr>
+
+                        <tr *ngFor="let produit of panier">
+                            <th scope="col">{{produit.box.nom}}</th>
+                            <th scope="col"><button class="moins" (click)="moinsInPanier(produit.box.id)">-</button>
+                                {{produit.quantite}} <button class="plus"
+                                    (click)="plusInPanier(produit.box.id)">+</button> <i class="bi bi-trash"
+                                    (click)="deleteBox(produit.box.id)"></i></th>
+                            <th scope="col">{{produit.box.prix}} €</th>
+                            <th scope="col">{{getTotalLigne(produit.box.id) | number: '1.2-2'}} €</th>
+                        </tr>
+                    </table>
+
+                    <h2 style="color: wheat;">Total: {{getTotal()| number: '1.2-2'}}</h2>
+
+                    <div *ngIf="panierValide() == true">
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#valideCommande">Valider
+                            Commande</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="valideCommande" tabindex="-1" aria-labelledby="valideCommandeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="valideCommandeLabel">Valider la commande ?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#valide"
+                    data-bs-dismiss="modal">Oui</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="valide" tabindex="-1" aria-labelledby="valideLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="valideLabel">Commande validé</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Commande n°{{getNumCommande()}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="addHistorique()" (click)="cancel()"
+                    data-bs-dismiss="modal">OUI</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const volet = document.getElementById("volet");
+    const ouvrirPanier = document.querySelector(".ouvrir");
+
+    ouvrirPanier.addEventListener("click", function() {
+        volet.classList.toggle("ouvert");
+    });
+});
+
+</script>
