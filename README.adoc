@@ -1,4 +1,4 @@
-= Compte-rendu Jeu Kotlin
+= Compte-rendu SushiApp
 :toc:
 == Sommaire
 
