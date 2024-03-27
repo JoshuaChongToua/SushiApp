@@ -24,8 +24,6 @@ export class CommandeService {
   
   }
 
-
-
   getHistorique() {
     return this.historique
   }
