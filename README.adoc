@@ -118,11 +118,10 @@ En cliquant sur le bouton "Valider Commande", un modal nous demande si on est su
 valider la commande puis le numéro de commande est créé.
 
 image::img/panier/sur.png[]
+
+Code pour générer le numéro de commande :
+
 image::img/panier/ncommande.png[]
-
-Code TypeScript pour générer le numéro de commande :
-
-image::img/panier/tsCommande.png[]
 
 
 == Historique

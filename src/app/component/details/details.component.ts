@@ -11,36 +11,34 @@ import { AddPanierService } from '../../service/add-panier.service';
 })
 export class DetailsComponent implements OnInit {
   idBox: any;
-  boxData : any 
-  listBoxes: any = []
+  boxData: any; // Contiendra les données de la boîte sélectionnée
+  listBoxes: any = []; // Contiendra toutes les boîtes disponibles
 
   constructor(private route: ActivatedRoute, private lookupBoxService: LookupBoxesService, private addPanier: AddPanierService) {}
 
   ngOnInit(): void {
+    // Souscrit aux paramètres de l'URL pour récupérer l'identifiant de la boîte
     this.route.params.subscribe(params => {
       this.idBox = params['id']; 
     });
-    this.lookupBoxService.getBoxes().subscribe((res:any) => {
+    // Récupère toutes les boîtes disponibles
+    this.lookupBoxService.getBoxes().subscribe((res: any) => {
       this.listBoxes = res;
-      this.getData()
-    })
-
+      // Appelle la méthode getData une fois que les données sont récupérées
+      this.getData();
+    });
   }
 
+  // Méthode pour extraire les données de la boîte sélectionnée
   getData() {
-    this.boxData = this.listBoxes.find((uneBox:Box)=>uneBox.id==this.idBox)
-    // for(let data of this.listBoxes) {
-    //   if (data.id == this.idBox) {
-    //     this.boxData = data
-    //     console.log(this.boxData)
-    //     return this.boxData
-    //   } 
-    // }
+    // Utilise la méthode find() pour trouver la boîte avec l'identifiant correspondant
+    this.boxData = this.listBoxes.find((uneBox: Box) => uneBox.id == this.idBox);
+    // Cette méthode permet d'obtenir les données de la boîte sélectionnée
   }
 
+  // Méthode pour ajouter la boîte sélectionnée au panier
   add() {
-    this.addPanier.addPanier(this.boxData,1)
+    this.addPanier.addPanier(this.boxData, 1);
+    // Cette méthode appelle la fonction addPanier du service AddPanierService pour ajouter la boîte sélectionnée au panier
   }
-
-  
 }

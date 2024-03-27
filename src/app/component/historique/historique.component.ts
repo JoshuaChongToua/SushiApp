@@ -11,38 +11,40 @@ import { Support } from '../../models/Support';
   styleUrl: './historique.component.css'
 })
 export class HistoriqueComponent {
-  historique: any = []
-  idCommande: string = ""
-  etat: boolean = false
-  support: any
-  total: any
+  historique: any = []; // Tableau contenant l'historique des commandes
+  idCommande: string = ""; // ID de la commande actuelle
+  etat: boolean = false; // État de la commande (en cours ou terminée)
+  support: any; // Support de la commande (liste de boîtes)
+  total: any; // Total de la commande
 
   constructor(private lookupBoxesService: LookupBoxesService, private getPanier: AddPanierService, private commandeService: CommandeService) { 
-    this.idCommande = this.commandeService.getId()
+    // Initialise l'ID de la commande en utilisant le service CommandeService
+    this.idCommande = this.commandeService.getId();
   }
 
   ngOnInit(): void {
-    this.historique = this.commandeService.getHistorique()
-    console.log(this.historique)
-
-    this.commandeService.majHistorique.subscribe((result:undefined)=>{
-      this.historique = this.commandeService.getHistorique()
-    })
+    // Initialise l'historique des commandes en récupérant les données du service CommandeService
+    this.historique = this.commandeService.getHistorique();
+    
+    // Souscrit aux changements de l'historique des commandes pour mettre à jour les données
+    this.commandeService.majHistorique.subscribe((result: undefined) => {
+      this.historique = this.commandeService.getHistorique();
+    });
   }
 
-  
-
+  // Ajoute une commande à l'historique
   addHistorique() {
-    this.commandeService.addHistorique( this.etat, this.support, this.total)
+    this.commandeService.addHistorique(this.etat, this.support, this.total);
   }
 
-  deleteLigne(id:string) {
-    this.commandeService.deleteLigne(id)
-    this.historique=this.commandeService.getHistorique()
- }
+  // Supprime une ligne de commande de l'historique
+  deleteLigne(id: string) {
+    this.commandeService.deleteLigne(id);
+    this.historique = this.commandeService.getHistorique();
+  }
 
+  // Supprime l'historique complet des commandes
   deleteHistorique() {
-    this.commandeService.cancel()
+    this.commandeService.cancel();
   }
-
 }

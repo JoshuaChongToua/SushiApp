@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { AddPanierService } from '../../service/add-panier.service';
 
 @Component({
@@ -8,16 +8,15 @@ import { AddPanierService } from '../../service/add-panier.service';
 })
 export class FooterComponent {
 
-  constructor( private getPanier: AddPanierService) { }
+  constructor(private getPanier: AddPanierService) { }
   
-
-
+  // Méthode pour obtenir le total du panier
   getTotal(): number {
-    return this.getPanier.getTotal()
+    return this.getPanier.getTotal();
   }
 
+  // Méthode pour annuler le panier
   cancel() {
-     this.getPanier.cancel()
-   
+     this.getPanier.cancel();
   }
 }
