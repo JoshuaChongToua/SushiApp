@@ -8,8 +8,11 @@
         <p class="rgpd">rgpd</p>
     </a>
 
-    <button routerLink="/panier" routerLinkActive="active" class="btn btn-success" style="width: 10%;">Total:
-        {{getTotal()| number: '1.2-2'}}</button>
+        <button *ngIf="getTotal() < 30" routerLink="/panier" routerLinkActive="active" class="btn btn-success" style="width: 10%;">Total:
+            {{getTotal()| number: '1.2-2'}}</button>
+
+        <button *ngIf="getTotal() >= 30" routerLink="/panier" routerLinkActive="active" class="btn btn-success" style="width: 10%;">Total:
+            {{getTotalReduit()| number: '1.2-2'}}</button>
 
 </footer>
 

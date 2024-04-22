@@ -83,7 +83,12 @@ export class BoxesDataComponent implements OnInit {
 
   // Ajoute le panier à l'historique des commandes
   addHistorique() {
-    this.commandeService.addHistorique(true, this.panier, this.getTotal());
+    if(this.getTotal() < 30) {
+      this.commandeService.addHistorique(true, this.panier, this.getTotal());
+    }
+    else {
+      this.commandeService.addHistorique(true, this.panier, this.getTotalReduit());
+    }
   }
 
   // Vérifie si le panier est vide
@@ -149,5 +154,13 @@ export class BoxesDataComponent implements OnInit {
   getNumCommande() {
     console.log("getNumCommande" + this.numCommande);
     return this.numCommande;
+  }
+
+  offre() {
+    return this.getPanier.minimum()
+  }
+
+  getTotalReduit() {
+    return this.getPanier.getTotalReduit()
   }
 }

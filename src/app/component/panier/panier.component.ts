@@ -39,7 +39,12 @@ export class PanierComponent {
 
   // Ajoute l'historique de commande
   addHistorique() {
-    this.commandeService.addHistorique(true, this.panier, this.getTotal());
+    if(this.getTotal() < 30) {
+      this.commandeService.addHistorique(true, this.panier, this.getTotal());
+    }
+    else {
+      this.commandeService.addHistorique(true, this.panier, this.getTotalReduit());
+    }
   }
 
   // Retourne le numéro de commande
@@ -110,4 +115,17 @@ export class PanierComponent {
   cancel() {
     this.getPanier.cancel();
   }
+
+  offre() {
+    return this.getPanier.minimum()
+  }
+
+  getTotalReduit() {
+    return this.getPanier.getTotalReduit()
+  }
+
+  getSaveurs() {
+    return this.getPanier.nbrSaveurs()
+  }
+
 }

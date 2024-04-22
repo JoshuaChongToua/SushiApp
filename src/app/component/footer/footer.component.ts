@@ -15,6 +15,10 @@ export class FooterComponent {
     return this.getPanier.getTotal();
   }
 
+  getTotalReduit() {
+    return this.getPanier.getTotalReduit()
+  }
+
   // Méthode pour annuler le panier
   cancel() {
      this.getPanier.cancel();

@@ -52,7 +52,13 @@
                         </tr>
                     </table>
 
-                    <h2 style="color: wheat;">Total: {{getTotal()| number: '1.2-2'}}</h2>
+                    <div *ngIf="getTotal() <= 30">
+                        <h2 class="total" style="color: wheat;">Total: {{getTotal()| number: '1.2-2'}}</h2>
+                    </div>
+                    <div *ngIf="getTotal() >= 30">
+                        <h2 class="total" style="color: wheat;">Total: {{getTotalReduit()| number: '1.2-2'}}</h2>
+                        <h3 style="color: wheat;">Reduction de {{offre()}}€</h3>
+                    </div>
 
                     <div *ngIf="panierValide() == true">
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#valideCommande">Valider

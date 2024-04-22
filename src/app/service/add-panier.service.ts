@@ -45,9 +45,24 @@ export class AddPanierService {
   // Méthode pour obtenir le total de tous les éléments dans le panier
   getTotal(): number {
     let total = 0;
+    let prixReduit = 0
     for (let elt of this.panier) {
       total += this.getTotalOnlyBox(elt.box.id);
     }
+    
+    return total;
+  }
+
+  getTotalReduit(): number {
+    let total = 0;
+    let prixReduit = 0
+    for (let elt of this.panier) {
+      total += this.getTotalOnlyBox(elt.box.id);
+    }
+    if(total>=30) {
+      prixReduit = this.minimum()
+    }
+    total -= prixReduit
     return total;
   }
 
@@ -68,5 +83,28 @@ export class AddPanierService {
     this.panier = []; // Réinitialise le panier
     localStorage.removeItem("panier"); // Supprime le panier du stockage local
     this.majPanier.emit(); // Émet un événement pour notifier les composants de la modification du panier
+  }
+
+  minimum() {
+    let prixMin = 999
+    for(let elt of this.panier) {
+      if(elt.box.prix < prixMin) {
+        prixMin = elt.box.prix
+      }
+    }
+    
+    return prixMin
+  }
+
+  nbrSaveurs() {
+    let listSaveurs: Array<any> = []
+    for(let elt of this.panier) {
+      for(let saveur of elt.box.saveurs) {
+        if(!listSaveurs.includes(saveur)) {
+          listSaveurs.push(saveur)
+        }
+      }
+    }
+    return listSaveurs.length
   }
 }
