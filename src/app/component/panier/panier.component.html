@@ -1,5 +1,6 @@
 <div class="container-fluid">
     <h3 style="color: whitesmoke;">Nombre saveurs = {{getSaveurs()}}</h3>
+
     <table class="table" style="color: wheat; text-align: center;">
         <tr>
             <th scope="col">Produits</th>
@@ -18,18 +19,21 @@
         </tr>
     </table>
 
-    <div *ngIf="getTotal() <= 30">
+    <div *ngIf="getTotal() <= 35">
         <h2 class="total" style="color: wheat;">Total: {{getTotal()| number: '1.2-2'}}</h2>
     </div>
-    <div *ngIf="getTotal() >= 30">
+    <div *ngIf="getTotal() >= 35">
         <h2 class="total" style="color: wheat;">Total: {{getTotalReduit()| number: '1.2-2'}}</h2>
-        <h3 style="color: wheat;">Reduction de {{offre()}}€</h3>
+        <!-- <h3 style="color: wheat;">Reduction de {{offre()}}€</h3> -->
+        <h3 style="color: whitesmoke;">gratuit {{hazard()}}</h3>
+
     </div>
 
     <div *ngIf="panierValide() == true">
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#valideCommande">Valider
             Commande</button>
     </div>
+
 </div>
 
 

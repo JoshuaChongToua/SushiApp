@@ -1,4 +1,5 @@
 <div *ngIf="boxes" class="card-container-fluid">
+    <!-- <h4 style="color: wheat;">Moyenne : {{getMoyenne()| number: '1.2-2'}}</h4> -->
     <div *ngFor="let box of boxes">
         <div class="col-6 card">
             <a class="nav-link active" routerLink="/details/{{box.id}}" routerLinkActive="active">

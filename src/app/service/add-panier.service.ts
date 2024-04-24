@@ -59,8 +59,11 @@ export class AddPanierService {
     for (let elt of this.panier) {
       total += this.getTotalOnlyBox(elt.box.id);
     }
-    if(total>=30) {
-      prixReduit = this.minimum()
+    // if(total>=30) {
+    //   prixReduit = this.minimum()
+    // }
+    if(total>=35) {
+      prixReduit = this.hazard()
     }
     total -= prixReduit
     return total;
@@ -95,6 +98,13 @@ export class AddPanierService {
     
     return prixMin
   }
+
+  hazard(): number {
+    let index = Math.floor(Math.random() * this.panier.length);
+  
+    return this.panier[index].box.prix;
+  }
+  
 
   nbrSaveurs() {
     let listSaveurs: Array<any> = []

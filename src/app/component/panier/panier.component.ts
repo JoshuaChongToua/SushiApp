@@ -128,4 +128,8 @@ export class PanierComponent {
     return this.getPanier.nbrSaveurs()
   }
 
+  hazard() {
+    return this.getPanier.hazard()
+  }
+
 }

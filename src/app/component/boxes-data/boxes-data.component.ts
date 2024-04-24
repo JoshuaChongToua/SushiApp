@@ -163,4 +163,15 @@ export class BoxesDataComponent implements OnInit {
   getTotalReduit() {
     return this.getPanier.getTotalReduit()
   }
+
+  getMoyenne() {
+    let c = 0
+    let res = 0
+    for(let boxe of this.boxes) {
+        res += boxe.prix
+        c++
+    }
+    
+    return res/c
+  }
 }
